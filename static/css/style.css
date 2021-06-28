@@ -1,0 +1,134 @@
+/*--------------- Indice -----------------*/
+/*
+    - Fuente
+    - Variables
+    - Generales
+    - Header/Skip navigation
+    - Menu Hamburguesa
+    - Menu Desktop
+    - Container
+    - Footer
+    - Media Query
+*/
+/*--------------- Fuente -----------------*/
+/*--------------- Variables -----------------*/
+:root{
+    --blue: #2364aa;
+    --light-gray: #e1e5f2;
+    --yellow: #f9fa5f;
+    --white: #fff;
+    --black: #000;
+}
+/*--------------- Generales -----------------*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+img {
+    max-width: 100%;
+}
+body {
+    background-color: var(--light-gray);
+}
+/*------------ Header/Skip navigation ------------ */
+.header {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+.sr-only{
+    clip: rect(1px, 1px, 1px, 1px);    
+    height: 1px;
+    overflow: hidden; 
+    position: absolute !important;
+    top: 0;       
+    white-space: nowrap;
+    width: 1px;
+}
+.sr-only:focus{
+    background-color: var(--blue);
+    color: var(--white);
+    clip: auto;
+    height: auto;
+    padding: 5px;
+    width: auto;
+}
+/*--------------- Menu Hamburguesa -----------------*/
+.btn-menu {
+    display: none;
+}
+/*--------------- Menu Desktop -----------------*/
+.navbar{
+    background-color: var(--blue);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.logo{
+    flex-grow: 1;
+}
+.list{
+    display: flex;
+    flex-grow: 0.25;
+    flex-wrap: wrap;
+    font-size: 1.2em;
+    justify-content: space-around;
+    list-style: none;
+}
+.list-item{
+    flex-grow: 1;
+    text-align: center;
+}
+.list-item-link{
+    color: var(--white);
+    display: block;
+    padding: 5px 0;
+    text-decoration: none;
+}
+.list-item-link:hover{
+    color: var(--yellow);
+}
+/*--------------- Container -----------------*/
+.container{
+    max-width: 100%;
+}
+/* ------------------------------------------ Slider img ----------------- */
+.swiper-container {
+    width: 100%;
+    height: 90vh;
+    overflow: auto;  
+    
+  }
+  .swiper-pagination{
+    margin: auto;
+  }
+  .swiper-slide{
+      text-align: center;
+  }
+/*--------------- Footer -----------------*/
+.footer{
+    background-color: var(--blue);
+    display: flex;
+    font-size: 1em;
+    justify-content: space-around;
+    padding: 15px;
+}
+.text-footer, .dev-link{
+    color: var(--white);
+}
+.dev-link{
+    text-decoration: none;
+    font-weight: bold;
+}
+.dev-link:hover{
+    color: var(--yellow);
+}
+/* ------- Fijar footer -----*/
+.fixed-bottom{
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+}

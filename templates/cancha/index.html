@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock  %}
+{% block body %}
+<main class="container" id="content">
+    <!-- Slider main container -->
+    <div class="swiper-container verticle-animation" id="swiperCont">
+        <div class="parallax-bg" style="background-image:url(https://luxnnia.com/wp-content/uploads/2016/07/pata-iot-roja.jpg)" data-swiper-parallax="-23%"></div>
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            ...
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</main>
+{% endblock  %}
+{% block js %}
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        let slider = document.querySelector("#swiperCont");
+        const swiper = new Swiper(slider, {
+        // Optional parameters
+        speed: 800,
+        direction: "vertical",
+        slidesPerView: 1,
+        spaceBetween: 30,
+        mousewheel: true,
+        parallax:true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        keyboard: {
+            enabled: true,
+            onlyInViewport: false,
+        },
+        });
+    </script>
+{% endblock  %}

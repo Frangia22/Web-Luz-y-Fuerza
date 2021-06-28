@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block css %}
+    {% endblock  %}
+    <title>Luz y Fuerza Laboulaye</title>
+</head>
+<body>
+    {% block header %}
+    <header class="header">
+        <div class="skip">
+            <a href="#nav" class="sr-only">Skip to navigation</a>
+            <a href="#content" class="sr-only">Skip to content</a>
+            <a href="#footer" class="sr-only">Skip to footer</a>
+        </div>
+        <div id="appW" class="wheatherNow">            
+        </div>
+    </header> <!-- Cierra el header -->
+    {% endblock  %}
+    {% block nav %}
+    <button class="btn-menu" type="submit" id="menubtn">
+        <span class="burger-menu"></span>
+    </button> <!-- Cierra el btn -->
+    <nav class="navbar" id="nav">
+        <div class="logo">
+            <img class="img-logo" src="" alt="">
+        </div>
+        <ul class="list">
+            <li class="list-item"><a href="" class="list-item-link">Inicio</a></li>
+            <li class="list-item"><a href="" class="list-item-link">Saca tu turno</a></li>
+            <li class="list-item"><a href="" class="list-item-link">Contacto</a></li>
+            <li class="list-item"><a href="" class="list-item-link">Ingresar</a></li>
+        </ul>
+    </nav>  <!-- Cierra el nav -->
+    {% endblock  %}
+    {% block body %}
+    
+    {% endblock  %}
+    {% block footer %}
+    <footer class="container fixed-bottom" id="footer">
+        <div class="footer">
+            <div class="derechos">
+                <p class="text-footer">Derechos reservados 2021 &copy</p>
+            </div>
+            <div class="dev">
+                <p class="text-footer">Diseñado por <a class="dev-link" href="">FG-FullStack</a></p>
+            </div>
+        </div>
+    </footer>
+    {% endblock  %}
+    <script src="{% static 'js/effects.js' %}"></script>
+    {% block js %}
+    {% endblock  %}
+</body>
+</html>
