@@ -9,6 +9,7 @@
     {% block css %}
     {% endblock  %}
     <title>Luz y Fuerza Laboulaye</title>
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" >
 </head>
 <body>
     {% block header %}
@@ -28,13 +29,27 @@
     </button> <!-- Cierra el btn -->
     <nav class="navbar" id="nav">
         <div class="logo">
-            <img class="img-logo" src="" alt="">
+            <img class="img-logo" src="{% static 'img/logoNav3.png' %}" alt="Logo institucional">
         </div>
         <ul class="list">
-            <li class="list-item"><a href="" class="list-item-link">Inicio</a></li>
-            <li class="list-item"><a href="" class="list-item-link">Saca tu turno</a></li>
+            {% if user.is_authenticated %}
+            <li class="list-item"><a href="#" class="list-item-link">Bienvenido, {{ user.username}}</a></li>
+            {% endif %}
+            <li class="list-item"><a href="{% url 'index' %}" class="list-item-link">Inicio</a></li>
+            <li class="list-item"><a href="" class="list-item-link">Calendario</a></li>
             <li class="list-item"><a href="" class="list-item-link">Contacto</a></li>
-            <li class="list-item"><a href="" class="list-item-link">Ingresar</a></li>
+            {% if user.is_authenticated %}
+            <li class="list-item"><a href="" class="list-item-link"><label class="item-turno" for="submenu">Turno</label></a>  
+                <input type="checkbox" id="submenu">
+                <ul class="submenu-desplegable">
+                    <li class="item-submenu"><a class="item-submenu-link" href="">Agendar turno</a></li>
+                    <li class="item-submenu"><a class="item-submenu-link" href="">Ver turnos</a></li>
+                </ul>
+            </li>
+            <li class="list-item"><a href="{% url 'logout' %}" class="list-item-link">Cerrar sesion</a></li>
+            {% else %}
+            <li class="list-item"><a href="{% url 'login' %}" class="list-item-link">Ingresar</a></li>
+            {% endif %}   
         </ul>
     </nav>  <!-- Cierra el nav -->
     {% endblock  %}
@@ -48,7 +63,7 @@
                 <p class="text-footer">Derechos reservados 2021 &copy</p>
             </div>
             <div class="dev">
-                <p class="text-footer">Diseñado por <a class="dev-link" href="">FG-FullStack</a></p>
+                <p class="text-footer">Diseñado por <a class="dev-link" href="#">FG-FullStack</a></p>
             </div>
         </div>
     </footer>

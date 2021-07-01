@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = '/cancha'
+LOGOUT_REDIRECT_URL = '/cancha'
+
 
 # Application definition
 

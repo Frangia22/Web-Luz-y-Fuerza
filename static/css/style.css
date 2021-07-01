@@ -18,6 +18,7 @@
     --yellow: #f9fa5f;
     --white: #fff;
     --black: #000;
+    --gray: #b3b2b1;
 }
 /*--------------- Generales -----------------*/
 *{
@@ -65,6 +66,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    align-items: center;
 }
 .logo{
     flex-grow: 1;
@@ -77,22 +79,45 @@ body {
     justify-content: space-around;
     list-style: none;
 }
-.list-item{
+.list-item, .item-submenu{
     flex-grow: 1;
     text-align: center;
 }
-.list-item-link{
+.list-item-link, .item-submenu-link{
     color: var(--white);
     display: block;
     padding: 5px 0;
     text-decoration: none;
 }
-.list-item-link:hover{
+.list-item-link:hover, .item-submenu-link:hover{
     color: var(--yellow);
 }
 /*--------------- Container -----------------*/
 .container{
     max-width: 100%;
+}
+/* ------------- Submenu Turno -----------------*/
+.submenu-desplegable{
+    display: none;
+}
+#submenu{
+    display: none;
+}
+#submenu:checked + .submenu-desplegable{
+    display: block;
+    position: absolute;
+    background-color: var(--blue);
+    width: 150px;
+    list-style: none;
+    z-index: 2;
+}
+.item-submenu:hover{
+    background-color: var(--gray);
+}
+.item-turno::after{
+    content: "\25BC";
+    margin: auto 5px;
+    font-size: 12px;
 }
 /* ------------------------------------------ Slider img ----------------- */
 .swiper-container {
