@@ -31,3 +31,9 @@ def loginView(request):
 # Cerrar sesión
 def logoutView(request):
     pass
+#Contacto 
+def contacto(request):
+    return render(request, "cancha/contacto.html")
+#Calendario
+def calendarioDetail(request):
+    return render(request, "cancha/calendario.html")

@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-
-
+<main class="container" id="content">
+    <div class="contact">
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1471.3482085328183!2d-63.40242144602639!3d-34.11908674228231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95cf7acecd8b059f%3A0x60a2a97f88ca3e68!2s25%20de%20Mayo%20526%2C%20Laboulaye%2C%20C%C3%B3rdoba!5e0!3m2!1ses-419!2sar!4v1625146455384!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="info-contact">
+            <h1>Contacto</h1>
+            <ul class="list-contact">
+                <li class="item-contact"><img src="{% static 'img/location.png' %}" alt="Direccion polideportivo"><a href="https://goo.gl/maps/mqeejahRHMs1Y1tm7" class="item-contact-link">Polideportivo</a></li>
+                <li class="item-contact"><img src="{% static 'img/location_office.png' %}" alt="Direccion oficina"><a href="https://goo.gl/maps/wqBpyjGmTKfTtwcs5" class="item-contact-link">Oficina</a></li>
+                <li class="item-contact"><img src="{% static 'img/instagram.png' %}" alt="Seguinos en Instagram"><a href="" class="item-contact-link">Instagram</a></li>
+                <li class="item-contact"><img src="{% static 'img/facebook.png' %}" alt="Seguinos en Facebook"><a href="" class="item-contact-link">Facebook</a></li>
+                <li class="item-contact"><h2>Para turnos</h2></li>
+                <li class="item-contact"><img src="{% static 'img/whatsapp.png' %}" alt="Celular David"><a href="" class="item-contact-link">3385408624 (David)</a></li>
+                <li class="item-contact"><img src="{% static 'img/whatsapp.png' %}" alt="Celular Lorenzo"><a href="" class="item-contact-link">3385400846 (Lorenzo)</a></li>
+            </ul>
+        </div>
+    </div>
+</main>
 {% endblock  %}

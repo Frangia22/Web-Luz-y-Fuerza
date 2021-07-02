@@ -36,8 +36,8 @@
             <li class="list-item"><a href="#" class="list-item-link">Bienvenido, {{ user.username}}</a></li>
             {% endif %}
             <li class="list-item"><a href="{% url 'index' %}" class="list-item-link">Inicio</a></li>
-            <li class="list-item"><a href="" class="list-item-link">Calendario</a></li>
-            <li class="list-item"><a href="" class="list-item-link">Contacto</a></li>
+            <li class="list-item"><a href="{% url 'calendario' %}" class="list-item-link">Calendario</a></li>
+            <li class="list-item"><a href="{% url 'contacto' %}" class="list-item-link">Contacto</a></li>
             {% if user.is_authenticated %}
             <li class="list-item"><a href="" class="list-item-link"><label class="item-turno" for="submenu">Turno</label></a>  
                 <input type="checkbox" id="submenu">
