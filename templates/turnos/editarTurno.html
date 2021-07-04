@@ -1,14 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock  %}
+{% load widget_tweaks %}
 {% block body %}
-<h2>Modificar Turnos</h2>
-
-<form action="" method="post" class="mx-5">
-    {% csrf_token %}
-    <label class="form-label">
-    {{ form }}
-    </label>
-    <input type="submit" value="Guardar Cambios" />
-    
-</form>
+<main class="container">
+    <div class="card">
+        <div class="card-title">
+            <h1>Modificar turno</h1>
+        </div>
+        <form class="form-inicio" action="" method="post">
+            {% csrf_token %}
+                <label for="nombre" class="form-label">Nombre</label>
+                {{ form.nombre|add_class:'form-control' }}
+                <label for="apellido" class="form-label">Apellido</label>
+                {{ form.apellido|add_class:'form-control' }}
+                <label for="cancha" class="form-label">Cancha</label>
+                {{ form.tipoCancha|add_class:'form-control' }}
+                <label for="celular" class="form-label">Celular</label>
+                {{ form.celular|add_class:'form-control' }}
+                <label for="fecha" class="form-label">Fecha</label>                
+                {{ form.fecha|add_class:'form-control'}}
+                {{ form.media }}                
+                <label for="asistio" class="form-label">Asistio</label>
+                {{ form.asistio|add_class:'form-control' }}
+                <label for="monto" class="form-label">Monto recaudado</label>
+                {{ form.montoRecaudado|add_class:'form-control' }}
+                <label for="turnoDado" class="form-label">Turno dado por</label>
+                {{ form.turnoDadoPor }}               
+                <input type="submit" value="Guardar cambios" class="btn-inicio"/>  
+            </form>
+    </div>
+</main>
+{% endblock  %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{% static 'js/horaform.js' %}"></script>
 {% endblock  %}

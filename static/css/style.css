@@ -226,6 +226,23 @@ body {
 .date-db{
     margin: 10px auto;
 }
+.btn {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--black);
+    border-radius: 8px;
+}
+.btn-delete {
+    background-color: red;
+    color: var(--black);
+}
+.btn-delete:hover{
+    color: var(--white);
+}
+.btn-edit{
+    background-color: green;
+    color: var(--white);
+}
 /*--------------- Footer -----------------*/
 .footer{
     background-color: var(--blue);

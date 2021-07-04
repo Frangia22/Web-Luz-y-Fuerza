@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock  %}
 {% block body %}
 <main class="container">
     <div class="card">
@@ -20,14 +23,15 @@
                 <label for="celular" class="form-label">Celular</label>
                 <input id="celular" type="number" class="form-control" name="celular" autofocus required>
                 <label for="fecha" class="form-label">Fecha</label>
-                <input id="fecha" type="text" class="form-control" name="fecha" autofocus required>
+                {{ form.media }}
+                <input id="fecha" type="text" class="form-control flat" name="fecha" autofocus required>
                 <label for="asistio" class="form-label">Asistio</label>
                 <select id="asistio" class="form-control" name="asistio" autofocus required>
                     <option value="Si">Si</option>
                     <option value="No">No</option>
                 </select>
                 <label for="monto" class="form-label">Monto recaudado</label>
-                <input id="monto" type="number" class="form-control" name="montoRecaudado" autofocus>
+                <input id="monto" type="number" class="form-control" name="montoRecaudado" autofocus required>
                 <label for="turnoDado" class="form-label">Turno dado por</label>
                 {{ form.turnoDadoPor }}
                 <input type="submit" value="Agendar turno" class="btn-inicio"/>  
@@ -35,4 +39,8 @@
     </div>
 </main>
 
+{% endblock  %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{% static 'js/horaform.js' %}"></script>
 {% endblock  %}

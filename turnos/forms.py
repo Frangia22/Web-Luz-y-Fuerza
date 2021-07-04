@@ -9,5 +9,6 @@ class turnoForm(forms.ModelForm):
         model = Turno
         fields = ('__all__')
         widgets = {
-          'turnoDadoPor': forms.Select()
+          'turnoDadoPor': forms.Select(),
+          'fecha': forms.DateTimeInput()
     }

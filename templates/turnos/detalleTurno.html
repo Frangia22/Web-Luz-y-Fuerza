@@ -11,8 +11,8 @@
         <li class="date-db">{{ turno.turnoDadoPor }}</li>
         <li class="date-db">{{ turno.montoRecaudado }}</li>
         {% if perms.turnos.change_turnos %}
-        <li class="date-db"><a href="{% url 'editarTurno'  turno.id %}">Editar</a></li>
-        <li class="date-db"><a href="{% url 'eliminarTurno'  turno.id %}">Eliminar</a></li>
+        <li class="date-db"><a class="btn btn-edit" href="{% url 'editarTurno'  turno.id %}">Editar</a></li>
+        <li class="date-db"><a class="btn btn-delete" href="{% url 'eliminarTurno'  turno.id %}">Eliminar</a></li>
         {% endif %}
     </ul>
     {% endfor %}
