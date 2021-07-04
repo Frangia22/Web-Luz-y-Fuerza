@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<h2>Modificar Turnos</h2>
+
+<form action="" method="post" class="mx-5">
+    {% csrf_token %}
+    <label class="form-label">
+    {{ form }}
+    </label>
+    <input type="submit" value="Guardar Cambios" />
+    
+</form>
+{% endblock  %}

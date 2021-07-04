@@ -42,8 +42,8 @@
             <li class="list-item"><a href="" class="list-item-link"><label class="item-turno" for="submenu">Turno</label></a>  
                 <input type="checkbox" id="submenu">
                 <ul class="submenu-desplegable">
-                    <li class="item-submenu"><a class="item-submenu-link" href="">Agendar turno</a></li>
-                    <li class="item-submenu"><a class="item-submenu-link" href="">Ver turnos</a></li>
+                    <li class="item-submenu"><a class="item-submenu-link" href="{% url 'nuevoTurno' %}">Agendar turno</a></li>
+                    <li class="item-submenu"><a class="item-submenu-link" href="{% url 'detalleTurno' %}">Ver turnos</a></li>
                 </ul>
             </li>
             <li class="list-item"><a href="{% url 'logout' %}" class="list-item-link">Cerrar sesion</a></li>

@@ -24,3 +24,9 @@ class eliminarTurno(LoginRequiredMixin, DeleteView):
     template_name = "turnos/eliminarTurno.html"
     success_url = reverse_lazy('index')
 
+class editarTurno(LoginRequiredMixin, UpdateView):
+    model = Turno
+    form_class = turnoForm
+    template_name = "turnos/editarTurno.html"
+    success_url = reverse_lazy('index')
+
