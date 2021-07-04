@@ -1,7 +1,49 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.css">
+{% endblock  %}
 {% block body %}
 <main class="container" id="content">
-    
+    <div class="card-calendar">
+        <div id="calendar" class="my-4"></div>
+        <h4 class="card-title">{{turno.id}} {{turno.nombre}}</h4>
+    </div>
 </main>
 {% endblock  %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      locale: 'es',
+      initialView: 'dayGridMonth',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      buttonText: {
+        today: 'Turnos',
+        month: 'Mes',
+        week: 'Semana',
+        day: 'Dia',
+      },
+      events: [
+          {% for i in events %}
+            {
+                title: '{{ i.nombre }} {{ i.tipoCancha }}',
+                start: '{{ i.fecha|date:"Y-m-d H:i" }}',
+                end: '{{ i.fecha|date:"H:i" }}'
+            },
+          {% endfor %}
+      ]
+    });
+    calendar.render();
+  });
+</script>
+{% endblock  %}
+
+
+

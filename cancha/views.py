@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+import datetime
 
 # Create your views here.
 # Creo la vista de la home
@@ -35,5 +36,30 @@ def logoutView(request):
 def contacto(request):
     return render(request, "cancha/contacto.html")
 #Calendario
+    # Muestra el calendario con las distintas reservas    
 def calendarioDetail(request):
-    return render(request, "cancha/calendario.html")
+    all_events = Turno.objects.all()
+    get_event_types = Turno.objects.only('event_type')
+
+    # if filters applied then get parameter and filter based on condition else return object
+    if request.GET:  
+        event_arr = []
+        if request.GET.get('event_type') == "all":
+            all_events = Turno.objects.all()
+        else:   
+            all_events = Turno.objects.filter(event_type__icontains=request.GET.get('event_type'))
+
+        for i in all_events:
+            event_sub_arr = {}
+            event_sub_arr['title'] = i.nombre, i.fecha
+            start_date = datetime.datetime.strptime(str(i.fecha.date()), "%Y-%m-%d").strftime("%Y-%m-%d")
+            event_sub_arr['start'] = start_date
+            event_arr.append(event_sub_arr)
+        return HttpResponse(json.dumps(event_arr))
+
+    context = {
+        "events":all_events,
+        "get_event_types":get_event_types,
+
+    }
+    return render(request,'cancha/calendario.html',context)
