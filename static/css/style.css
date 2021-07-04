@@ -165,6 +165,57 @@ body {
     gap: 10px;
     padding: 10px;
 }
+/* --------------- Login -----------------*/
+.card{
+    background-color: var(--white);
+    border-radius: 15px;
+    margin: auto;
+    width: 25em;
+}
+.card-title{
+    text-align: center;
+    padding-top: 40px;
+}
+.form-inicio{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    margin: auto;    
+}
+.form-label{
+    margin: 10px 0;
+}
+.form-control{
+    background: #e6e6e6;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 5px;
+    margin-bottom: var(--margin-bottom);    
+}
+.btn-inicio{
+    background-color: var(--blue);
+    border-radius: 20px;
+    border: none;
+    color: var(--white);
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 10px 5px;
+    text-transform: uppercase;
+}
+.btn-inicio:hover{
+    background-color: var(--gray);
+    color: var(--black);
+}
+/* --------------- detalleTurno Provisorio -----------------*/
+.db{
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    gap: 20px;
+}
+.date-db{
+    margin: 10px auto;
+}
 /*--------------- Footer -----------------*/
 .footer{
     background-color: var(--blue);

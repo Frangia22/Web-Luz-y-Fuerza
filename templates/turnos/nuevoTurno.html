@@ -1,5 +1,38 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+<main class="container">
+    <div class="card">
+        <div class="card-title">
+            <h1>Agendar turno</h1>
+        </div>
+        <form class="form-inicio" action="" method="post">
+            {% csrf_token %}
+                <label for="nombre" class="form-label">Nombre</label>
+                <input id="nombre" type="text" class="form-control" name="nombre" autofocus required>
+                <label for="apellido" class="form-label">Apellido</label>
+                <input id="apellido" type="text" class="form-control" name="apellido" autofocus required>
+                <label for="cancha" class="form-label">Cancha</label>
+                <select id="cancha" class="form-control" name="tipoCancha" autofocus required>
+                    <option value="Futbol">Futbol</option>
+                    <option value="Padel">Padel</option>
+                </select>
+                <label for="celular" class="form-label">Celular</label>
+                <input id="celular" type="number" class="form-control" name="celular" autofocus required>
+                <label for="fecha" class="form-label">Fecha</label>
+                <input id="fecha" type="text" class="form-control" name="fecha" autofocus required>
+                <label for="asistio" class="form-label">Asistio</label>
+                <select id="asistio" class="form-control" name="asistio" autofocus required>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="monto" class="form-label">Monto recaudado</label>
+                <input id="monto" type="number" class="form-control" name="montoRecaudado" autofocus>
+                <label for="turnoDado" class="form-label">Turno dado por</label>
+                {{ form.turnoDadoPor }}
+                <input type="submit" value="Agendar turno" class="btn-inicio"/>  
+            </form>
+    </div>
+</main>
 
 {% endblock  %}
