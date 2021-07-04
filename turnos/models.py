@@ -1,9 +1,9 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.models import User
 from datetime import datetime, date
-from django.core.validators import RegexValidator
-from turnos.list import cancha
+from turnos.list import cancha, asistencia
 
 # Create your models here.
 class Turno(models.Model):
@@ -11,9 +11,11 @@ class Turno(models.Model):
     nombre = models.CharField(max_length=60)
     apellido = models.CharField(max_length=60)
     tipoCancha = models.CharField(max_length=60, choices= cancha)
-    fecha = models.DateTimeField(verbose_name='Fecha', default=datetime.now)
-    celular_regex = RegexValidator(regex=r'^\+?54?\d{10}$', message = "Número debe ser ingresado en formato '+54XXXXXXXXXX'.")
-    celular = models.CharField("Celular", validators=[celular_regex], max_length = 14, unique = True)
+    fecha = models.DateTimeField(verbose_name='Fecha y hora')
+    celular = models.CharField("Celular", max_length = 11, unique = True)
+    asistio = models.CharField(max_length=9, choices= asistencia, default='Si')
+    montoRecaudado = models.IntegerField(default=0)
+    turnoDadoPor = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="TurnoDadoPor")
 
 class Meta:
     verbose_name = 'Turno'
