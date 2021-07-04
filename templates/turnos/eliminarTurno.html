@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<form method = "POST">
+    {% csrf_token %}
+    <h3>¿Desea eliminar el pedido de {{ turno.nombre }}, {{ turno.fecha }}?</h3>
+    <button class= "btn-inicio" type= "submit">Si, eliminar</button>
+    <a href="{% url 'detalleTurno' %}" class="btn btn-default">Cancelar</a>
+</form>
+{% endblock  %}

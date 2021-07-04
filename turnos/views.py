@@ -13,3 +13,14 @@ class nuevoTurno(LoginRequiredMixin, CreateView):
     form_class = turnoForm
     template_name = "turnos/nuevoTurno.html"
     success_url = reverse_lazy('index')
+class detalleTurno(LoginRequiredMixin, ListView):
+    model = Turno
+    template_name = "turnos/detalleTurno.html"
+    context_object_name = 'turnos'
+    paginate_by = 15
+
+class eliminarTurno(LoginRequiredMixin, DeleteView):
+    model = Turno
+    template_name = "turnos/eliminarTurno.html"
+    success_url = reverse_lazy('index')
+
