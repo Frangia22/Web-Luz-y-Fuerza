@@ -17,7 +17,7 @@ class detalleTurno(LoginRequiredMixin, ListView):
     model = Turno
     template_name = "turnos/detalleTurno.html"
     context_object_name = 'turnos'
-    paginate_by = 15
+    paginate_by = 7
 
 class eliminarTurno(LoginRequiredMixin, DeleteView):
     model = Turno

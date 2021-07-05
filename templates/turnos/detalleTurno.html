@@ -2,19 +2,48 @@
 {% load static %}
 {% block body %}
 <main class="container">
+    <ul class="db">
+        <li class="date-db">Nombre</li>
+        <li class="date-db">Cancha</li>
+        <li class="date-db">Fecha</li>
+        <li class="date-db">Turno dado por</li>
+        <li class="date-db">Monto recaudado</li>
+        {% if perms.turnos.change_turnos %}
+        <li class="date-db">Editar</li>
+        <li class="date-db">Eliminar</li>
+        {% endif %}
+    </ul>
     {% for turno in turnos %}
     <ul class="db">
-        <li class="date-db">{{ turno.id }}</li>
         <li class="date-db">{{ turno.nombre }}</li>
         <li class="date-db">{{ turno.tipoCancha }}</li>
         <li class="date-db">{{ turno.fecha }}</li>
         <li class="date-db">{{ turno.turnoDadoPor }}</li>
-        <li class="date-db">{{ turno.montoRecaudado }}</li>
+        <li class="date-db">$ {{ turno.montoRecaudado }}</li>
         {% if perms.turnos.change_turnos %}
         <li class="date-db"><a class="btn btn-edit" href="{% url 'editarTurno'  turno.id %}">Editar</a></li>
         <li class="date-db"><a class="btn btn-delete" href="{% url 'eliminarTurno'  turno.id %}">Eliminar</a></li>
         {% endif %}
     </ul>
     {% endfor %}
+    <nav class="container">
+        {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="pagination-item"><a class="pagination-item-link btn btn-pagination" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+            {% endif %}
+
+            {% for i in paginator.page_range %}
+                <li {% if page_obj.number == i %} class="active" {% endif %}>
+                    <a class="pagination-item-link" href="?page={{i}}">{{ i }}</a>
+                </li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a class="pagination-item-link btn btn-pagination" href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</nav>
 </main>
 {% endblock  %}
