@@ -12,7 +12,7 @@ class Turno(models.Model):
     apellido = models.CharField(max_length=60)
     tipoCancha = models.CharField(max_length=60, choices= cancha)
     fecha = models.DateTimeField(verbose_name='Fecha y hora')
-    celular = models.CharField("Celular", max_length = 11, unique = True)
+    celular = models.CharField("Celular", max_length = 11)
     asistio = models.CharField(max_length=9, choices= asistencia, default='Si')
     montoRecaudado = models.IntegerField(default=0)
     turnoDadoPor = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="TurnoDadoPor")
