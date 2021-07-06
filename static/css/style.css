@@ -8,8 +8,16 @@
     - Menu Desktop
     - Container
     - Contact page
+    - Login, nuevoTurno, editTurno y eliminarTurno
+    - detalleTurno
+    - Calendario
+    - Pagination
     - Footer
     - Media Query
+    - 1023
+    - 767
+    - 400
+    - 375
 */
 /*--------------- Fuente -----------------*/
 /*--------------- Variables -----------------*/
@@ -143,6 +151,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 20px;
+    margin-bottom: var(--margin-bottom);
 }
 .map{
     width: 50%;
@@ -151,7 +160,7 @@ body {
     background-image: url('../img/Logo-LYF1.png');
     background-repeat: no-repeat;
     background-size: 25%;
-    background-color: var(--gray-200);
+    background-color: var(--white);
     background-position: right bottom;
     padding: 10px;
     width: 45%;
@@ -164,6 +173,13 @@ body {
     align-items: center;
     gap: 10px;
     padding: 10px;
+}
+.item-contact-link {
+    text-decoration: none;
+    color: var(--black);
+}
+.item-contact-link:hover{
+    color: var(--blue);
 }
 /* --------------- Login -----------------*/
 .card{
@@ -212,12 +228,13 @@ body {
     background-color: var(--white);
     border-radius: 15px;
     margin: auto;
+    margin-bottom: var(--margin-bottom);
     width: 51em;
 }
 #calendar{
     height: 25em;
 }
-/* --------------- detalleTurno Provisorio -----------------*/
+/* --------------- detalleTurno -----------------*/
 .db{
     display: flex;
     justify-content: space-evenly;
@@ -255,6 +272,7 @@ body {
     gap: 10px;
     justify-content: center;
     list-style: none;
+    margin-bottom: var(--margin-bottom);
 }
 .pagination-item-link{
     color: var(--black);
@@ -269,6 +287,7 @@ body {
 .footer{
     background-color: var(--blue);
     display: flex;
+    flex-wrap: wrap; 
     font-size: 1em;
     justify-content: space-around;
     padding: 15px;
@@ -284,9 +303,123 @@ body {
     color: var(--yellow);
 }
 /* ------- Fijar footer -----*/
+/*
 .fixed-bottom{
     bottom: 0;
     left: 0;
     position: fixed;
     width: 100%;
+}
+*/
+/* ----------------------------------------- Fin de footer --------------------------------------------*/
+/* ---------------------------------------- Media queries --------------------- */
+@media (max-width: 1023px){
+    /* ------ Skip-navigation -------*/
+    .header{
+        display: none;
+    }
+    /*------ Menu  -------*/
+    .logo{
+        text-align: center;
+    }
+    /*------- Calendario ---------*/
+    .card-calendar{
+        padding: 5px;
+        width: 100%;
+    }
+    #calendar{
+        height: 28em;
+    }
+    /*---------------- Contacto ----------------------------------------------*/
+    .contact{
+        margin: 0 5px;
+        margin-bottom: var(--margin-bottom);    
+    }
+    /* ------- eliminarTurno ---------*/
+    .mb{
+        margin-bottom: var(--margin-bottom);
+    }
+    /*-------------- Pagination -----------------------------*/
+    .pagination{
+        margin-bottom: var(--margin-bottom);
+    }
+}
+@media (max-width: 767px){
+    .btn-menu{
+        display: block;
+        background-color: var(--blue);
+        border: 2px solid var(--black);
+        border-radius: 6px;
+    }
+    .burger-menu{
+        background-image: url(../img/menu-black.png);
+        display: inline-block;
+        width: 2.5em;
+        height: 2.5em;
+        margin: 5px;
+        vertical-align: middle;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .navbar{
+        display: none;
+    }
+    .desplegar{
+        display: block;
+    }
+    .list-item, .item-submenu {
+        padding: 5px;
+        width: 100%;
+    }
+    #submenu:checked + .submenu-desplegable {
+        left: 0;
+        position: relative;
+        width: 100%;
+    }
+    /*----------- Calendario -------------*/
+    .fc-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+     /*---------------- Contacto ----------------------------------------------*/
+    .contact{
+        justify-content: space-evenly;
+    }
+    .map, .info-contact{
+        min-width: 21em;    
+    }
+    /*----------- detalleTurno -----------*/
+    #hidden{               
+    display: none;
+    }
+    .db{
+        gap: 0;
+    }
+    /*-------- Footer ------------*/
+    .footer{
+        gap: 20px;
+    }
+    .fixed-bottom{
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+    }
+}
+@media (max-width: 375px){
+    /*------ Contacto ------*/
+    .map, .info-contact{
+        display: block;
+        min-width: 100%;
+    }
+    /*------ Login ------*/
+    .card{
+        width: 100%;
+    }
+    /*------ detalleTurno ------*/
+    .db{
+        min-width: 100%;
+    }
+
 }

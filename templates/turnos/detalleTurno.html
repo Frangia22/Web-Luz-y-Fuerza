@@ -3,10 +3,10 @@
 {% block body %}
 <main class="container">
     <ul class="db">
-        <li class="date-db">Nombre</li>
-        <li class="date-db">Cancha</li>
+        <li id="hidden" class="date-db">Nombre</li>
+        <li id="hidden" class="date-db">Cancha</li>
         <li class="date-db">Fecha</li>
-        <li class="date-db">Turno dado por</li>
+        <li id="hidden" class="date-db">Turno dado por</li>
         <li class="date-db">Monto recaudado</li>
         {% if perms.turnos.change_turnos %}
         <li class="date-db">Editar</li>
@@ -15,10 +15,10 @@
     </ul>
     {% for turno in turnos %}
     <ul class="db">
-        <li class="date-db">{{ turno.nombre }}</li>
-        <li class="date-db">{{ turno.tipoCancha }}</li>
+        <li id="hidden" class="date-db">{{ turno.nombre }}</li>
+        <li id="hidden" class="date-db">{{ turno.tipoCancha }}</li>
         <li class="date-db">{{ turno.fecha }}</li>
-        <li class="date-db">{{ turno.turnoDadoPor }}</li>
+        <li id="hidden" class="date-db">{{ turno.turnoDadoPor }}</li>
         <li class="date-db">$ {{ turno.montoRecaudado }}</li>
         {% if perms.turnos.change_turnos %}
         <li class="date-db"><a class="btn btn-edit" href="{% url 'editarTurno'  turno.id %}">Editar</a></li>
