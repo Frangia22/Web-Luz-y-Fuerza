@@ -13,15 +13,13 @@
             {% csrf_token %}
                 <label for="nombre" class="form-label">Nombre</label>
                 <input id="nombre" type="text" class="form-control" name="nombre" autofocus required>
-                <label for="apellido" class="form-label">Apellido</label>
-                <input id="apellido" type="text" class="form-control" name="apellido" autofocus required>
                 <label for="cancha" class="form-label">Cancha</label>
                 <select id="cancha" class="form-control" name="tipoCancha" autofocus required>
                     <option value="Futbol">Futbol</option>
                     <option value="Padel">Padel</option>
                 </select>
-                <label for="celular" class="form-label">Celular</label>
-                <input id="celular" type="number" class="form-control" name="celular" autofocus required>
+                <label for="celular" class="form-label">Celular<small>(Opcional)</small></label>
+                <input id="celular" type="number" class="form-control" name="celular" autofocus>
                 <label for="fecha" class="form-label">Fecha</label>
                 {{ form.media }}
                 <input id="fecha" type="text" class="form-control flat" name="fecha" autofocus required>

@@ -14,11 +14,9 @@
             {% csrf_token %}
                 <label for="nombre" class="form-label">Nombre</label>
                 {{ form.nombre|add_class:'form-control' }}
-                <label for="apellido" class="form-label">Apellido</label>
-                {{ form.apellido|add_class:'form-control' }}
                 <label for="cancha" class="form-label">Cancha</label>
                 {{ form.tipoCancha|add_class:'form-control' }}
-                <label for="celular" class="form-label">Celular</label>
+                <label for="celular" class="form-label">Celular<small>(Opcional)</small></label>
                 {{ form.celular|add_class:'form-control' }}
                 <label for="fecha" class="form-label">Fecha</label>                
                 {{ form.fecha|add_class:'form-control'}}
