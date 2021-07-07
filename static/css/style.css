@@ -137,13 +137,46 @@ body {
     height: 90vh;
     overflow: auto;  
     
-  }
-  .swiper-pagination{
+}
+.swiper-pagination{
     margin: auto;
-  }
-  .swiper-slide{
+}
+.swiper-slide{
+      color: var(--black);      
       text-align: center;
-  }
+}
+.portUno, .portDos, .portTres, .portCuatro{
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.card-text{
+    padding: 40px;
+}
+.text-black{
+    color: var(--black);
+    width: 80%;
+}
+.subtitle-slider{
+    text-align: justify;
+}
+.portUno{
+    align-items: flex-start;
+    background-image: url('/static/img/portadaUno.png');
+}
+.portDos{
+    background-image: url('/static/img/portadaDos.png');
+}
+.portTres{
+    background-image: url('/static/img/portadaTres.png');
+}
+.portCuatro{
+    background-image: url('/static/img/portadaCuatro.png');
+}
 /*---------------- Contacto ----------------------------------------------*/
 .contact{
     align-items: center;

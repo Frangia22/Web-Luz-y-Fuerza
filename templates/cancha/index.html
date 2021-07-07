@@ -12,20 +12,34 @@
         <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="swiper-slide">
-                <h1>¿Quienes somos?</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi harum perspiciatis cupiditate ab facere dolores tempore eius velit maiores pariatur commodi aliquam, excepturi alias tempora quae. Magnam veritatis consequatur nobis!</p>
+                <div class="portUno">
+                    <div class="card-text text-black">
+                        <h1>Sobre nosotros</h1>
+                        <h2 class="subtitle-slider">Luz y Fuerza Mercedes es una organizacion social de 
+                        naturaleza gremial, cuya primera razon de ser se basa 
+                        en los lazos de solidaridad laboral de sus afiliados 
+                        en defensa de intereses comunes.</h2>
+                    </div>
+                </div>                
             </div>
-            <div class="swiper-slide">
-                <h1>¿Que hacemos?</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus commodi aspernatur autem quis veritatis, eligendi mollitia animi ratione consectetur illum voluptatem repellendus veniam! Quaerat molestiae obcaecati voluptatum quam voluptatem vitae.</p>
+            <div class="swiper-slide">                   
+                <div class="portDos">
+                    <div class="card-text">
+                        <h1>Nuestras instalaciones</h1>
+                        <h2>Seccional</h2>
+                    </div>
+                </div> 
             </div>
-            <div class="swiper-slide">
-                <!-- <img src="{ static 'img/insSeccional.png'}" alt=""> -->
-                <h1>Nuestras instalaciones</h1>
-                <h2>Oficina</h2>
+            <div class="swiper-slide">    
+                <div class="portTres">
+                    <div class="card-text">
+                        <h2>Polideportivo</h2>
+                    </div>
+                </div>
             </div>
-            <div class="swiper-slide">
-                <h2>Polideportivo</h2>
+            <div class="swiper-slide">  
+                <div class="portCuatro">
+                </div>
             </div>
             ...
         </div>
@@ -56,7 +70,7 @@
             onlyInViewport: false,
         },
         });
-        const foo = document.querySelector('#footer');
-        foo.classList.remove('fixed-bottom');
+        //const foo = document.querySelector('#footer');
+        //foo.classList.remove('fixed-bottom');
     </script>
 {% endblock  %}
