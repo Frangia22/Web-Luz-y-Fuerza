@@ -1,0 +1,1 @@
+web: gunicorn LyFLaboulaye.wsgi --log-file -
