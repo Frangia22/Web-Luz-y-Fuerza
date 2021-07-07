@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-w$b(y0fprb8v=(s4hq^ib!6-_%&4ucd**c8xy&2400n49#h^-z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['luzyfuerzalbye.herokuapp.com']
 
 LOGIN_REDIRECT_URL = '/cancha'
 LOGOUT_REDIRECT_URL = '/cancha'
