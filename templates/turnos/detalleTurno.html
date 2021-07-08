@@ -20,7 +20,7 @@
         <li class="date-db">{{ turno.fecha }}</li>
         <li id="hidden" class="date-db">{{ turno.turnoDadoPor }}</li>
         <li class="date-db">$ {{ turno.montoRecaudado }}</li>
-        {%  if request.user|grupo:'administradores'  %}
+        {%  if request.user|grupo:'administradores' %}
         <li class="date-db"><a class="btn btn-edit" href="{% url 'editarTurno'  turno.id %}">Editar</a></li>
         <li class="date-db"><a class="btn btn-delete" href="{% url 'eliminarTurno'  turno.id %}">Eliminar</a></li>
         {% endif %}
