@@ -2,13 +2,14 @@
 {% load static %}
 {% block body %}
 <main class="container">
+{% load user_tags %}
     <ul class="db">
         <li id="hidden" class="date-db">Nombre</li>
         <li id="hidden" class="date-db">Cancha</li>
         <li class="date-db">Fecha</li>
         <li id="hidden" class="date-db">Turno dado por</li>
         <li class="date-db">Monto recaudado</li>
-        {% if perms.turnos.change_turnos %}
+        {%  if request.user|grupo:'administradores' %}
         <li class="date-db">Editar</li>
         <li class="date-db">Eliminar</li>
         {% endif %}
