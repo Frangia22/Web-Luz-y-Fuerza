@@ -2,14 +2,13 @@
 {% load static %}
 {% block body %}
 <main class="container">
-{% load user_tags %}
     <ul class="db">
         <li id="hidden" class="date-db">Nombre</li>
         <li id="hidden" class="date-db">Cancha</li>
         <li class="date-db">Fecha</li>
         <li id="hidden" class="date-db">Turno dado por</li>
         <li class="date-db">Monto recaudado</li>
-        {%  if request.user|grupo:'administradores' %}
+        {% if perms.turnos.change_turno %}
         <li class="date-db">Editar</li>
         <li class="date-db">Eliminar</li>
         {% endif %}
@@ -21,7 +20,7 @@
         <li class="date-db">{{ turno.fecha }}</li>
         <li id="hidden" class="date-db">{{ turno.turnoDadoPor }}</li>
         <li class="date-db">$ {{ turno.montoRecaudado }}</li>
-        {%  if request.user|grupo:'administradores' %}
+        {% if perms.turnos.change_turno %}
         <li class="date-db"><a class="btn btn-edit" href="{% url 'editarTurno'  turno.id %}">Editar</a></li>
         <li class="date-db"><a class="btn btn-delete" href="{% url 'eliminarTurno'  turno.id %}">Eliminar</a></li>
         {% endif %}
