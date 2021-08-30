@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from turnos.models import Turno
+from cancha.models import Gasto
+from cancha.forms import gastoForm
+from django.db.models import Sum
+from datetime import datetime, date
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -63,3 +67,41 @@ def calendarioDetail(request):
 
     }
     return render(request,'cancha/calendario.html',context)
+#Ganancias
+class ganancias(LoginRequiredMixin, ListView):
+    model = Gasto
+    template_name = "cancha/ganancias.html"
+    context_object_name = 'gastos'
+    paginate_by = 7
+    
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        mes = date.today()
+        diaSemana = date.today().isocalendar()[1]
+        print(diaSemana)
+        contexto['montoSemanal'] = Turno.objects.filter(fecha__week=diaSemana).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
+        contexto['gastoSemanal'] = Gasto.objects.filter(fecha__week=diaSemana).aggregate(Sum('monto')).get('monto__sum')
+        contexto['montoTotal'] = Turno.objects.filter(fecha__month=mes.month).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
+        contexto['gastoTotal'] = Gasto.objects.filter(fecha__month=mes.month).aggregate(Sum('monto')).get('monto__sum')
+        contexto['balance'] = Turno.objects.filter(fecha__month=mes.month).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum') - Gasto.objects.filter(fecha__month=mes.month).aggregate(Sum('monto')).get('monto__sum')
+        contexto['balanceSemanal'] = Turno.objects.filter(fecha__week=diaSemana).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum') - Gasto.objects.filter(fecha__week=diaSemana).aggregate(Sum('monto')).get('monto__sum')
+        return contexto
+#Detalle gasto
+class detalleGasto(LoginRequiredMixin, ListView):
+    model = Gasto
+    template_name = "cancha/detalleGasto.html"
+    context_object_name = 'gastos'
+    paginate_by = 10
+#Agregar gasto
+class nuevoGasto(LoginRequiredMixin, CreateView):
+    model = Gasto
+    form_class = gastoForm
+    template_name = "cancha/nuevoGasto.html"
+    success_url = reverse_lazy('ganancias')
+#Eliminar gasto
+class eliminarGasto(LoginRequiredMixin, DeleteView):
+    model = Gasto
+    template_name = "cancha/eliminarGasto.html"
+    success_url = reverse_lazy('ganancias')
+

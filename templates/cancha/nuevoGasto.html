@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock  %}
+{% block body %}
+<main class="container">
+    <div class="card">
+        <div class="card-title">
+            <h1>Agregar gasto</h1>
+        </div>
+        <form class="form-inicio" action="" method="post">
+            {% csrf_token %}
+                <label for="concepto" class="form-label">Concepto</label>
+                <input id="concepto" type="text" class="form-control" name="concepto" autofocus required>
+                <label for="monto" class="form-label">Monto</label>
+                <input id="monto" type="text" class="form-control" name="monto" autofocus required>
+                <label for="fecha" class="form-label">Fecha</label>
+                {{ form.media }}
+                <input id="fecha" type="text" class="form-control flat" name="fecha" autofocus required>
+                <label for="referencia" class="form-label">Referencia<small>(Opcional)</small></label>
+                <input id="referencia" type="text" class="form-control" name="referencia" autofocus>
+                <input type="submit" value="Agregar gasto " class="btn-inicio"/>  
+            </form>
+    </div>
+</main>
+
+{% endblock  %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{% static 'js/horaform.js' %}"></script>
+<script src="{% static 'js/quitarFooterFixed.js' %}"></script>
+{% endblock  %}

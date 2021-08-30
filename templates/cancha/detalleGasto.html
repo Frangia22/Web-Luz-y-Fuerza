@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<main class="container">
+    <ul class="db">
+        <li class="date-db hide-field">ID</li>
+        <li class="date-db">Concepto</li>
+        <li class="date-db">Monto</li>
+        <li class="date-db hide-field">Fecha</li>
+        <li class="date-db hide-field">Referencia</li>
+        {% if perms.turnos.change_turno %}
+        <li class="date-db">Acciones</li>
+        {% endif %}
+    </ul>
+    {% for gasto in gastos %}
+    <ul class="db">
+        <li class="date-db hide-field">{{ gasto.id }}</li>
+        <li class="date-db">{{ gasto.concepto }}</li>
+        <li class="date-db">$ {{ gasto.monto }}</li>
+        <li class="date-db hide-field">{{ gasto.fecha }}</li>
+        {% if gasto.referencia == None %}
+        <li class="date-db hide-field">No fue especificado</li>
+        {% else %}
+        <li class="date-db hide-field">{{ gasto.referencia }}</li>
+        {% endif %}
+        {% if perms.turnos.change_turno %}
+        <li class="date-db">
+            <a class="btn btn-delete hide-field" href="{% url 'eliminarGasto'  gasto.id %}">Eliminar</a>
+            <a class="btn btn-edit show-btn" href="#" data-bs-toggle="modal" data-bs-target="#verProducto-{{ gasto.id }}">Ver más</a>
+        </li>
+        {% endif %}
+        <div class="modal fade hide-field hide" id="verProducto-{{ gasto.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Gasto N° {{ gasto.id }}</h5>
+                        <button aria-hidden="true" data-dismiss="alert" data-bs-dismiss="modal" id="btnClose" class="close close-modal" type="button">&#10006;</button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list">
+                            <li class="list-item p-1">
+                                <p class=""><strong>Concepto</strong></p>
+                                <p>{{ gasto.concepto }}</p>
+                            </li>
+                            <li class="list-item p-1">
+                                <p class=""><strong>Fecha</strong></p>
+                                <p class="">{{ gasto.fecha }}</p>
+                            </li>
+                            <li class="list-item p-1">
+                                {% if gasto.referencia == None %}
+                                <p class=""><strong>Referencia</strong></p>
+                                <p class="">No fue especificado</p>
+                                {% else %}                            
+                                <p class=""><strong>Referencia</strong></p>
+                                <p class="">{{ gasto.referencia }}</p>
+                                {% endif %}
+                            </li>
+                            <li class="list-item p-1">
+                                <p class=""><strong>Monto</strong></p>
+                                <p class="">$ {{ gasto.monto }}</p>
+                            </li> 
+                            {% if perms.turnos.change_turno %}
+                            <li class="list-item p-1">
+                                <a class="btn btn-delete" href="{% url 'eliminarGasto'  gasto.id %}">Eliminar</a>
+                            </li>
+                            {% endif %}                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ul>
+    {% endfor %}
+    <nav class="container">
+        {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="pagination-item"><a class="pagination-item-link btn btn-pagination" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+            {% endif %}
+
+            {% for i in paginator.page_range %}
+                <li {% if page_obj.number == i %} class="active" {% endif %}>
+                    <a class="pagination-item-link" href="?page={{i}}">{{ i }}</a>
+                </li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a class="pagination-item-link btn btn-pagination" href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</nav>
+</main>
+{% endblock  %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% endblock %}

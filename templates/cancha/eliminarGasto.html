@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<main class="container mb text-center">
+    <form class="my-1" method = "POST">
+            {% csrf_token %}
+            <h3 class="py-1">¿Desea eliminar el gasto de {{ gasto.concepto }}, {{ gasto.fecha }}?</h3>
+            <button class= "btn btn-delete text-white p-1" type= "submit">Si, eliminar</button>
+            <a href="{% url 'detalleGasto' %}" class="btn btn-default p-1">Cancelar</a>
+    </form>
+</main>
+{% endblock  %}
+{% block js %}
+<script src="{% static 'js/fixedFooter.js' %}"></script>
+{% endblock  %}

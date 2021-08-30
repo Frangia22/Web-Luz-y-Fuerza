@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<main class="container" id="content">
+    <div class="balance">
+        <div class="card">
+            <div class="header-subtitle">
+                <ul class="subtitle-list">
+                    <li class="subtitle-item subtitle-item-admin"><h1 class="subtitle-item-link">Balance Semanal <img class="img-arrow" src="{% static 'img/budget.svg'%}" alt=""></h1></li>
+                </ul>
+            </div>
+            <ul class="list py-2">
+                <li class="list-balance"><a class="list-item">Ingresos</a></li>
+                <li class="list-balance"><a class="list-item text-success">$ {{ montoSemanal }}</a></li>
+            </ul> 
+            <ul class="list py-2">
+                <li class="list-balance"><a class="list-item">Gastos</a></li>
+                <li class="list-balance"><a class="list-item text-warning">$ {{ gastoSemanal }}</a></li>
+            </ul> 
+            <hr>
+            {% if balanceSemanal > 0  %}
+                <ul class="list py-2">
+                    <li class="list-balance"><a class="list-item ">Balance</a></li>
+                    <li class="list-balance"><a class="list-item text-success d-flex">$ {{ balanceSemanal }} <img class="img-arrow" src="{% static 'img/flechaarriba.svg'%}" alt=""></a></li>
+                </ul> 
+            {% else %}
+                <ul class="list py-2">
+                    <li class="list-balance"><a class="list-item">Balance</a></li>
+                    <li class="list-balance"><a class="list-item text-warning d-flex">$ {{ balanceSemanal }} <img class="img-arrow" src="{% static 'img/flechaabajo.svg'%}" alt=""></a></li>
+                </ul> 
+            {% endif %}
+        </div>
+        <div class="card">
+            <div class="header-subtitle">
+                <ul class="subtitle-list">
+                    <li class="subtitle-item subtitle-item-admin"><h1 class="subtitle-item-link">Balance Mensual <img class="img-arrow" src="{% static 'img/budget.svg'%}" alt=""></h1></li>
+                </ul>
+            </div>
+            <ul class="list py-2">
+                <li class="list-balance"><a class="list-item">Ingresos</a></li>
+                <li class="list-balance"><a class="list-item text-success">$ {{ montoTotal }}</a></li>
+            </ul> 
+            <ul class="list py-2">
+                <li class="list-balance"><a class="list-item">Gastos</a></li>
+                <li class="list-balance"><a class="list-item text-warning">$ {{ gastoTotal }}</a></li>
+            </ul> 
+            <hr>
+            {% if balance > 0  %}
+                <ul class="list py-2">
+                    <li class="list-balance"><a class="list-item ">Balance</a></li>
+                    <li class="list-balance"><a class="list-item text-success d-flex">$ {{ balance }} <img class="img-arrow" src="{% static 'img/flechaarriba.svg'%}" alt=""></a></li>
+                </ul> 
+            {% else %}
+                <ul class="list py-2">
+                    <li class="list-balance"><a class="list-item">Balance</a></li>
+                    <li class="list-balance"><a class="list-item text-warning d-flex">$ {{ balance }} <img class="img-arrow" src="{% static 'img/flechaabajo.svg'%}" alt=""></a></li>
+                </ul> 
+            {% endif %}
+        </div>
+    </div>  
+    <div class="container">
+        <div class="header-subtitle">
+            <ul class="subtitle-list">
+                <li class="subtitle-item subtitle-item-admin"><h1 class="subtitle-item-link">Ultimos gastos</h1></li>
+            </ul>
+        </div>
+    </div><!-- Cierra el subtitle -->
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Monto</th>
+                    <th>Fecha</th>                                       
+                </tr>
+            </thead>
+            {% for gasto in gastos %}
+            <tbody>
+                <tr>
+                    <td>{{ gasto.concepto }}</td>
+                    <td>$ {{ gasto.monto }}</td>
+                    <td>{{ gasto.fecha }}</td>                 
+                </tr>
+            </tbody>            
+            {% endfor %}
+        </table>          
+    </div>
+</main>
+{% endblock  %}
