@@ -3,27 +3,95 @@
 {% block body %}
 <main class="container">
     <ul class="db">
-        <li id="hidden" class="date-db">Nombre</li>
-        <li id="hidden" class="date-db">Cancha</li>
+        <li class="date-db hide-field">Nombre</li>
+        <li class="date-db">Cancha</li>
         <li class="date-db">Fecha</li>
-        <li id="hidden" class="date-db">Turno dado por</li>
-        <li class="date-db">Monto recaudado</li>
+        <li class="date-db hide-field">Turno dado por</li>
+        <li class="date-db hide-field">Afiliado</li>
+        <li class="date-db hide-field">Monto recaudado</li>
         {% if perms.turnos.change_turno %}
-        <li class="date-db">Editar</li>
-        <li class="date-db">Eliminar</li>
+        <li class="date-db">Acciones</li>
         {% endif %}
     </ul>
     {% for turno in turnos %}
     <ul class="db">
-        <li id="hidden" class="date-db">{{ turno.nombre }}</li>
-        <li id="hidden" class="date-db">{{ turno.tipoCancha }}</li>
+        <li class="date-db hide-field">{{ turno.nombre }}</li>
+        <li class="date-db">{{ turno.tipoCancha }}</li>
         <li class="date-db">{{ turno.fecha }}</li>
-        <li id="hidden" class="date-db">{{ turno.turnoDadoPor }}</li>
-        <li class="date-db">$ {{ turno.montoRecaudado }}</li>
+        <li class="date-db hide-field">{{ turno.turnoDadoPor }}</li>
+        <li class="date-db hide-field">
+            {% if turno.afiliado == None %}
+            <p class="text-success">No fueron afiliados</p>
+            {% else %}
+            <p class="text-warning">{{ turno.afiliado }}</p>
+            {% endif %}
+        </li>
+        <li class="date-db hide-field">
+            {% if turno.montoRecaudado == None %}
+            <p class="text-warning">No fue especificado</p>
+            {% else %}
+            <p>$ {{ turno.montoRecaudado }}</p>
+            {% endif %}
+        </li>
         {% if perms.turnos.change_turno %}
-        <li class="date-db"><a class="btn btn-edit" href="{% url 'editarTurno'  turno.id %}">Editar</a></li>
-        <li class="date-db"><a class="btn btn-delete" href="{% url 'eliminarTurno'  turno.id %}">Eliminar</a></li>
+        <li class="date-db d-flex gap-1">
+            <a class="btn btn-edit hide-field" href="{% url 'editarTurno'  turno.id %}">Editar</a>
+            <a class="btn btn-delete hide-field" href="{% url 'eliminarTurno'  turno.id %}">Eliminar</a>
+            <a class="btn btn-edit show-btn" href="#" data-bs-toggle="modal" data-bs-target="#verProducto-{{ turno.id }}">Ver más</a>
+        </li>
         {% endif %}
+        <div class="modal fade hide-field hide" id="verProducto-{{ turno.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ turno.nombre }}</h5>
+                        <button aria-hidden="true" data-dismiss="alert" data-bs-dismiss="modal" id="btnClose" class="close close-modal" type="button">&#10006;</button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list">
+                            <li class="list-item p-1">
+                                <p class=""><strong>Cancha</strong></p>
+                                <p>{{ turno.tipoCancha }}</p>
+                            </li>
+                            <li class="list-item p-1">
+                                <p class=""><strong>Fecha</strong></p>
+                                <p class="">{{ turno.fecha }}</p>
+                            </li>
+                            <li class="list-item p-1">
+                                <p class=""><strong>Turno dado por</strong></p>
+                                <p class="">{{ turno.turnoDadoPor }}</p>
+                            </li>
+                            <li class="list-item p-1">
+                                <p class=""><strong>Monto</strong></p>
+                                <p class="">$ {{ turno.montoRecaudado }}</p>
+                            </li> 
+                            <li class="list-item p-1">
+                                <p class=""><strong>Afiliado</strong></p>
+                                {% if turno.afiliado == None %}
+                                    <p class="text-success">No fueron afiliados</p>
+                                {% else %}
+                                    <p class="text-warning">{{ turno.afiliado }}</p>
+                                {% endif %}
+                            </li> 
+                            <li class="list-item p-1">
+                                <p class=""><strong>Asistio</strong></p>
+                                {% if turno.asistio == "Si" %}
+                                    <p class="text-success">{{ turno.asistio }}</p>
+                                {% else %}
+                                    <p class="text-warning">{{ turno.asistio }}</p>
+                                {% endif %}
+                            </li> 
+                            {% if perms.turnos.change_turno %}
+                            <li class="list-item p-1">
+                                <a class="btn btn-edit" href="{% url 'editarTurno'  turno.id %}">Editar</a>
+                                <a class="btn btn-delete" href="{% url 'eliminarTurno'  turno.id %}">Eliminar</a>
+                            </li>
+                            {% endif %}                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ul>
     {% endfor %}
     <nav class="container">
@@ -47,3 +115,6 @@
 </nav>
 </main>
 {% endblock  %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% endblock %}
