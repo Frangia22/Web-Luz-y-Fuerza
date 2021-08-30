@@ -33,7 +33,7 @@
       events: [
           {% for i in events %}
             {
-                title: '{{ i.nombre }} {{ i.tipoCancha }}',
+                title: '{{ i.tipoCancha }} {{ i.nombre }}',
                 start: '{{ i.fecha|date:"Y-m-d H:i" }}',
                 end: '{{ i.fecha|date:"H:i" }}'
             },
