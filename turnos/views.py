@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.db.models import Sum
+from datetime import datetime, date
 from turnos.models import Turno
 from turnos.forms import turnoForm
 from django.http import HttpResponseRedirect, HttpResponse
@@ -19,6 +21,12 @@ class detalleTurno(LoginRequiredMixin, ListView):
     context_object_name = 'turnos'
     paginate_by = 7
     ordering = ['-fecha']
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        mes = date.today()
+        contexto['montoTotal'] = Turno.objects.filter(fecha__month=mes.month).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
+        return contexto
 
 class eliminarTurno(LoginRequiredMixin, DeleteView):
     model = Turno
