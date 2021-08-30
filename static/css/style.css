@@ -1,15 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Kalam&display=swap');
 /*--------------- Indice -----------------*/
 /*
     - Fuente
     - Variables
     - Generales
     - Header/Skip navigation
+    - Subtitle
     - Menu Hamburguesa
     - Menu Desktop
     - Container
     - Contact page
     - Login, nuevoTurno, editTurno y eliminarTurno
     - detalleTurno
+    - Ganancias
+    - Table
     - Calendario
     - Pagination
     - Footer
@@ -42,6 +46,7 @@ img {
 }
 body {
     background-color: var(--light-gray);
+    font-family: "Kalam", "Architects Daughter", Arial, Helvetica, sans-serif;
 }
 /*------------ Header/Skip navigation ------------ */
 .header {
@@ -66,6 +71,25 @@ body {
     height: auto;
     padding: 5px;
     width: auto;
+}
+/*--------------------------------------------- Subtitle ----------------------------------------------------*/
+.header-subtitle{
+    background-color: transparent;
+    padding: 10px 0;
+}
+.subtitle-list{
+    list-style: none;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+.subtitle-item{
+    flex-grow: 1;
+}
+.subtitle-item-link{
+    text-decoration: none;
+    margin-right: 20px;
+    color: var(--blue);
 }
 /*--------------- Menu Hamburguesa -----------------*/
 .btn-menu {
@@ -104,6 +128,11 @@ body {
 .list-item-link:hover, .item-submenu-link:hover{
     color: var(--yellow);
 }
+/* ------ List-Balance ----- ------*/
+.list-balance {
+    font-size: 1.4em;
+    margin: 10px auto;
+}
 /*--------------- Container -----------------*/
 .container{
     max-width: 100%;
@@ -112,10 +141,10 @@ body {
 .submenu-desplegable{
     display: none;
 }
-#submenu{
+#submenu, #submenu1{
     display: none;
 }
-#submenu:checked + .submenu-desplegable{
+#submenu:checked + .submenu-desplegable, #submenu1:checked + .submenu-desplegable{
     display: block;
     position: absolute;
     background-color: var(--blue);
@@ -215,6 +244,14 @@ body {
     color: var(--blue);
 }
 /* --------------- Login -----------------*/
+.hide{
+    display: none;
+}
+.icon-pass{
+    cursor: pointer;
+    position: absolute;
+    margin: auto 10px;
+}
 .card{
     background-color: var(--white);
     border-radius: 15px;
@@ -242,6 +279,18 @@ body {
     padding: 10px 5px;
     margin-bottom: var(--margin-bottom);    
 }
+.form-control-login {
+    background: #e6e6e6;
+    border-radius: 20px;
+    border: none;
+    display: block;
+    padding: 10px 5px;
+    margin-bottom: var(--margin-bottom);
+    width: 100%;
+}
+.form-group-12{
+    width: 100%;
+}
 .btn-inicio{
     background-color: var(--blue);
     border-radius: 20px;
@@ -267,6 +316,38 @@ body {
 #calendar{
     height: 25em;
 }
+/*------------- Ganancias ----------------------------*/
+.d-flex{
+    display: flex;
+    align-items: center;
+  }
+  .img-arrow {
+    width: 1.4em;
+    margin: auto 20px;
+  }
+  .balance {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+  /*----------------------------------------------------------------- Table ----------------------------------------------*/
+table{
+    margin: 10px auto;
+    text-align: center;
+    width: 75em;
+}
+thead {
+    background-color: var(--blue);
+    color: var(--white);
+}
+tbody:nth-of-type(2n+1) {
+    background-color: var(--white);
+}
+th, td{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    padding: 5px;
+}
 /* --------------- detalleTurno -----------------*/
 .db{
     display: flex;
@@ -281,6 +362,9 @@ body {
 .date-db{
     margin: 10px 20px;
     width: 100%;
+}
+.show-btn {
+    display: none;
 }
 .btn {
     padding: 5px 10px;
@@ -299,6 +383,13 @@ body {
     background-color: green;
     color: var(--white);
 }
+.btn-default {
+    border: 1px solid;
+}
+.btn-default:hover {
+    background-color: var(--blue);
+    color: var(--white);
+}
 /*-------------- Pagination -----------------------------*/
 .pagination{
     display: flex;
@@ -314,6 +405,16 @@ body {
 }
 .btn-pagination{
     background-color: var(--blue);
+    color: var(--white);
+}
+/*--------------- Text-color----------------------------- */
+.text-success {
+    color: green;
+}
+.text-warning {
+    color: red;
+}
+.text-white {
     color: var(--white);
 }
 /*--------------- Footer -----------------*/
@@ -334,6 +435,22 @@ body {
 }
 .dev-link:hover{
     color: var(--yellow);
+}
+/* ---------------------------------------------------------------- Margin y padding -----*/
+.p-1 {
+    padding: 10px;
+}
+.my-1 {
+    margin: 10px auto;
+}
+.py-1 {
+    padding: 10px 0;
+}
+.gap-1 {
+    gap: 5px;
+}
+.text-center {
+    text-align: center;
 }
 /* ------- Fijar footer -----*/
 /*
@@ -381,8 +498,9 @@ body {
     .btn-menu{
         display: block;
         background-color: var(--blue);
-        border: 2px solid var(--black);
-        border-radius: 6px;
+        border: none;
+        width: 100%;
+        text-align: left;
     }
     .burger-menu{
         background-image: url(../img/menu-black.png);
@@ -409,6 +527,11 @@ body {
         position: relative;
         width: 100%;
     }
+    #submenu1:checked + .submenu-desplegable {
+        left: 0;
+        position: relative;
+        width: 100%;
+    }
     /*----------- Calendario -------------*/
     .fc-toolbar {
         display: flex;
@@ -423,11 +546,85 @@ body {
         min-width: 21em;    
     }
     /*----------- detalleTurno -----------*/
-    #hidden{               
+    .hide-field{               
     display: none;
+    }
+    .show-btn{
+        display: block;
     }
     .db{
         gap: 0;
+    }
+    /* ----------- Ganancias --------*/
+    table {
+        width: 100%;
+    }
+    /* -------- Modal --------------------------------*/
+    .modal{
+        position: fixed;
+        z-index: 1060;
+        display: none;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        outline: 0;
+        top: 0;
+    }
+    .fade {
+        transition: opacity .15s linear;
+    }
+    .modal-dialog {
+        position: relative;
+        width: auto;
+        margin: .5rem;
+        pointer-events: none;
+    }
+    .modal-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.2);
+        border-radius: .3rem;
+        outline: 0;
+    }
+    .modal-header {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1rem;
+        border-bottom: 1px solid #dee2e6;
+        border-top-left-radius: calc(.3rem - 1px);
+        border-top-right-radius: calc(.3rem - 1px);
+    }
+    .modal-body {
+        position: relative;
+        flex: 1 1 auto;
+        padding: 1rem;
+    }
+    .close {
+        background-color: var(--white);
+        border-radius: 100%;
+        padding: 4px;
+        border: 1px solid;
+    }
+    /* ---------------------------------------------------------------- Margin y padding -----*/
+    .p-1 {
+        padding: 10px;
+    }
+    .my-1 {
+        margin: 10px auto;
+    }
+    .py-1 {
+        padding: 10px 0;
+    }
+    .text-center {
+        text-align: center;
     }
     /*-------- Footer ------------*/
     .footer{
