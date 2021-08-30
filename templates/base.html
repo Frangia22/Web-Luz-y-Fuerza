@@ -38,9 +38,19 @@
             <li class="list-item"><a href="{% url 'index' %}" class="list-item-link">Inicio</a></li>
             <li class="list-item"><a href="{% url 'calendario' %}" class="list-item-link">Calendario</a></li>
             <li class="list-item"><a href="{% url 'contacto' %}" class="list-item-link">Contacto</a></li>
-            {% if user.is_authenticated %}
-            <li class="list-item"><a href="" class="list-item-link"><label class="item-turno" for="submenu">Turno</label></a>  
+            {% if user.username == 'admin' %}
+            <li class="list-item"><a href="" class="list-item-link"><label class="item-turno" for="submenu">Ganancias</label></a>  
                 <input type="checkbox" id="submenu">
+                <ul class="submenu-desplegable">
+                    <li class="item-submenu"><a class="item-submenu-link" href="{% url 'nuevoGasto' %}">Agregar gasto</a></li>
+                    <li class="item-submenu"><a class="item-submenu-link" href="{% url 'detalleGasto' %}">Ver gastos</a></li>
+                    <li class="item-submenu"><a class="item-submenu-link" href="{% url 'ganancias' %}">Ver ganancias</a></li>
+                </ul>
+            </li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li class="list-item"><a href="" class="list-item-link"><label class="item-turno" for="submenu1">Turno</label></a>  
+                <input type="checkbox" id="submenu1">
                 <ul class="submenu-desplegable">
                     <li class="item-submenu"><a class="item-submenu-link" href="{% url 'nuevoTurno' %}">Agendar turno</a></li>
                     <li class="item-submenu"><a class="item-submenu-link" href="{% url 'detalleTurno' %}">Ver turnos</a></li>
