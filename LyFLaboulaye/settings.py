@@ -23,12 +23,14 @@ import os
 SECRET_KEY = 'django-insecure-w$b(y0fprb8v=(s4hq^ib!6-_%&4ucd**c8xy&2400n49#h^-z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-LOGIN_REDIRECT_URL = 'https://luzyfuerzalbye.herokuapp.com/'
-LOGOUT_REDIRECT_URL = 'https://luzyfuerzalbye.herokuapp.com/'
+#LOGIN_REDIRECT_URL = 'https://luzyfuerzalbye.herokuapp.com/'
+#LOGOUT_REDIRECT_URL = 'https://luzyfuerzalbye.herokuapp.com/'
+LOGIN_REDIRECT_URL = 'http://localhost:8000'
+LOGOUT_REDIRECT_URL = 'http://localhost:8000'
 
 
 # Application definition
@@ -81,21 +83,21 @@ WSGI_APPLICATION = 'LyFLaboulaye.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-import dj_database_url
-from decouple import config
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+#import dj_database_url
+#from decouple import config
 
 #DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
+#    'default': dj_database_url.config(
+#        default=config('DATABASE_URL')
+#    )
 #}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
@@ -139,13 +141,16 @@ USE_TZ = True
 #]
 #STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_URL = 'static/'
 
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '/')
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, "static"),
 )
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
