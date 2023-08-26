@@ -80,12 +80,24 @@ class ganancias(LoginRequiredMixin, ListView):
         mes = date.today()
         diaSemana = date.today().isocalendar()[1]
         print(diaSemana)
-        contexto['montoSemanal'] = Turno.objects.filter(fecha__week=diaSemana).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
+        gastosSemanales = Gasto.objects.filter(fecha__month=mes.month).aggregate(Sum('monto')).get('monto__sum')
+        gastosMensuales = Gasto.objects.filter(fecha__week=diaSemana).aggregate(Sum('monto')).get('monto__sum')
+        montoSemanal = Turno.objects.filter(fechaInicio__month=mes.month).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
+        montoMensual = Turno.objects.filter(fechaInicio__week=diaSemana).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
+        if (gastosSemanales == None):
+            gastosSemanales = 0
+        if (gastosMensuales == None):
+            gastosMensuales = 0
+        if (montoSemanal == None):
+            montoSemanal = 0
+        if (montoMensual == None):
+            montoMensual = 0
+        contexto['montoSemanal'] = Turno.objects.filter(fechaInicio__week=diaSemana).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
         contexto['gastoSemanal'] = Gasto.objects.filter(fecha__week=diaSemana).aggregate(Sum('monto')).get('monto__sum')
-        contexto['montoTotal'] = Turno.objects.filter(fecha__month=mes.month).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
+        contexto['montoTotal'] = Turno.objects.filter(fechaInicio__month=mes.month).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
         contexto['gastoTotal'] = Gasto.objects.filter(fecha__month=mes.month).aggregate(Sum('monto')).get('monto__sum')
-        contexto['balance'] = Turno.objects.filter(fecha__month=mes.month).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum') - Gasto.objects.filter(fecha__month=mes.month).aggregate(Sum('monto')).get('monto__sum')
-        contexto['balanceSemanal'] = Turno.objects.filter(fecha__week=diaSemana).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum') - Gasto.objects.filter(fecha__week=diaSemana).aggregate(Sum('monto')).get('monto__sum')
+        contexto['balance'] =  montoSemanal - gastosSemanales
+        contexto['balanceSemanal'] = montoMensual - gastosMensuales
         return contexto
 #Detalle gasto
 class detalleGasto(LoginRequiredMixin, ListView):
