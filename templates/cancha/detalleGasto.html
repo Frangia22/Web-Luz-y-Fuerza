@@ -12,6 +12,7 @@
         <li class="date-db">Acciones</li>
         {% endif %}
     </ul>
+    {% if gastos  %}
     {% for gasto in gastos %}
     <ul class="db">
         <li class="date-db hide-field">{{ gasto.id }}</li>
@@ -71,6 +72,11 @@
         </div>
     </ul>
     {% endfor %}
+    {% else %}
+    <ul class="db">
+        <li class="date-db text-center text-success">No hay gastos registrados</li>
+    </ul>
+    {% endif %}
     <nav class="container">
         {% if is_paginated %}
         <ul class="pagination">

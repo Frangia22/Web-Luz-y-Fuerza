@@ -11,22 +11,38 @@
             </div>
             <ul class="list py-2">
                 <li class="list-balance"><a class="list-item">Ingresos</a></li>
+                {% if montoSemanal %}
                 <li class="list-balance"><a class="list-item text-success">$ {{ montoSemanal }}</a></li>
+                {% else %}
+                <li class="list-balance"><a class="list-item text-success">$ Sin ingresos</a></li>
+                {% endif %}
             </ul> 
             <ul class="list py-2">
                 <li class="list-balance"><a class="list-item">Gastos</a></li>
+                {% if gastoSemanal %}
                 <li class="list-balance"><a class="list-item text-warning">$ {{ gastoSemanal }}</a></li>
+                {% else %}
+                <li class="list-balance"><a class="list-item text-success">$ Sin gastos</a></li>
+                {% endif %}
             </ul> 
             <hr>
             {% if balanceSemanal > 0  %}
                 <ul class="list py-2">
                     <li class="list-balance"><a class="list-item ">Balance</a></li>
+                    {% if balanceSemanal %}
                     <li class="list-balance"><a class="list-item text-success d-flex">$ {{ balanceSemanal }} <img class="img-arrow" src="{% static 'img/flechaarriba.svg'%}" alt=""></a></li>
+                    {% else %}
+                    <li class="list-balance"><a class="list-item text-success">Sin datos</a></li>
+                    {% endif %}
                 </ul> 
             {% else %}
                 <ul class="list py-2">
                     <li class="list-balance"><a class="list-item">Balance</a></li>
+                    {% if balanceSemanal %}
                     <li class="list-balance"><a class="list-item text-warning d-flex">$ {{ balanceSemanal }} <img class="img-arrow" src="{% static 'img/flechaabajo.svg'%}" alt=""></a></li>
+                    {% else %}
+                    <li class="list-balance"><a class="list-item text-success">Sin datos</a></li>
+                    {% endif %}
                 </ul> 
             {% endif %}
         </div>
@@ -38,22 +54,38 @@
             </div>
             <ul class="list py-2">
                 <li class="list-balance"><a class="list-item">Ingresos</a></li>
+                {% if montoTotal %}
                 <li class="list-balance"><a class="list-item text-success">$ {{ montoTotal }}</a></li>
+                {% else %}
+                <li class="list-balance"><a class="list-item text-success">Sin datos</a></li>
+                {% endif %}
             </ul> 
             <ul class="list py-2">
                 <li class="list-balance"><a class="list-item">Gastos</a></li>
+                {% if gastoTotal %}
                 <li class="list-balance"><a class="list-item text-warning">$ {{ gastoTotal }}</a></li>
+                {% else %}
+                <li class="list-balance"><a class="list-item text-success">Sin datos</a></li>
+                {% endif %}
             </ul> 
             <hr>
             {% if balance > 0  %}
                 <ul class="list py-2">
                     <li class="list-balance"><a class="list-item ">Balance</a></li>
+                    {% if balance %}
                     <li class="list-balance"><a class="list-item text-success d-flex">$ {{ balance }} <img class="img-arrow" src="{% static 'img/flechaarriba.svg'%}" alt=""></a></li>
+                    {% else %}
+                    <li class="list-balance"><a class="list-item text-success">Sin datos</a></li>
+                    {% endif %}
                 </ul> 
             {% else %}
                 <ul class="list py-2">
                     <li class="list-balance"><a class="list-item">Balance</a></li>
+                    {% if balance %}
                     <li class="list-balance"><a class="list-item text-warning d-flex">$ {{ balance }} <img class="img-arrow" src="{% static 'img/flechaabajo.svg'%}" alt=""></a></li>
+                    {% else %}
+                    <li class="list-balance"><a class="list-item text-success">Sin datos</a></li>
+                    {% endif %}
                 </ul> 
             {% endif %}
         </div>
@@ -65,7 +97,8 @@
             </ul>
         </div>
     </div><!-- Cierra el subtitle -->
-    <div class="container">
+    <div class="container my-1">
+        {% if gastos %}
         <table>
             <thead>
                 <tr>
@@ -83,7 +116,12 @@
                 </tr>
             </tbody>            
             {% endfor %}
-        </table>          
+        </table>
+        {% else %}
+        <ul class="db">
+            <li class="date-db text-center text-success">No hay gastos registrados</li>
+        </ul>
+        {% endif %}       
     </div>
 </main>
 {% endblock  %}

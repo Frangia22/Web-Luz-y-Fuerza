@@ -13,11 +13,12 @@
         <li class="date-db">Acciones</li>
         {% endif %}
     </ul>
+    {% if turnos  %}
     {% for turno in turnos %}
     <ul class="db">
         <li class="date-db hide-field">{{ turno.nombre }}</li>
         <li class="date-db">{{ turno.tipoCancha }}</li>
-        <li class="date-db">{{ turno.fecha }}</li>
+        <li class="date-db">{{ turno.fechaInicio }}</li>
         <li class="date-db hide-field">{{ turno.turnoDadoPor }}</li>
         <li class="date-db hide-field">
             {% if turno.afiliado == None %}
@@ -55,7 +56,7 @@
                             </li>
                             <li class="list-item p-1">
                                 <p class=""><strong>Fecha</strong></p>
-                                <p class="">{{ turno.fecha }}</p>
+                                <p class="">{{ turno.fechaInicio }} - {{ turno.fechaFin }}</p>
                             </li>
                             <li class="list-item p-1">
                                 <p class=""><strong>Turno dado por</strong></p>
@@ -94,6 +95,11 @@
         </div>
     </ul>
     {% endfor %}
+    {% else %}
+    <ul class="db">
+        <li class="date-db text-center text-success">No hay turnos registrados</li>
+    </ul>
+    {% endif %}
     <nav class="container">
         {% if is_paginated %}
         <ul class="pagination">
