@@ -14,7 +14,11 @@
             {% csrf_token %}
                 <label for="nombre" class="form-label">Nombre</label>
                 <input id="nombre" type="text" class="form-control" name="nombre" autofocus required>
+                {% if request.user|has_group:'Secretaria' %}
+                <label for="cancha" class="form-label">Polideportivo</label>
+                {% else %}
                 <label for="cancha" class="form-label">Cancha</label>
+                {% endif %}
                 <select id="cancha" class="form-control" name="tipoCancha" autofocus required>
                     {% if request.user|has_group:'Secretaria' %}
                     <option value="Polideportivo">Polideportivo</option>
@@ -44,7 +48,7 @@
                 <input id="afiliado" type="number" class="form-control" name="afiliado" autofocus>
                 <label for="monto" class="form-label">Monto recaudado</label>
                 <input id="monto" type="number" class="form-control" name="montoRecaudado" autofocus>
-                {% if request.user|has_group:'Secretaria' %}
+                {% if request.user|has_group:'Secretaria' or request.user|has_group:'Admin' %}
                 <label for="observaciones" class="form-label">Observaciones</label>
                 <textarea name="observaciones" placeholder="Colocar observaciones, por ejemplo: Si hay que ir a limpiar el salón" class="form-control" autofocus id="observaciones" cols="10" rows="5"></textarea>
                 {% endif %}

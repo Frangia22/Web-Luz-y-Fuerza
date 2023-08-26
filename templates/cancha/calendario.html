@@ -7,7 +7,6 @@
 <main class="container" id="content">
     <div class="card-calendar">
         <div id="calendar" class="my-4"></div>
-        <h4 class="card-title">{{turno.id}} {{turno.nombre}}</h4>
     </div>
 </main>
 {% endblock  %}
@@ -17,6 +16,8 @@
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
+      height: 550,
+      nowIndicator: true,
       locale: 'es',
       initialView: 'dayGridMonth',
       headerToolbar: {
@@ -32,11 +33,20 @@
       },
       events: [
           {% for i in events %}
+            {% if i.tipoCancha == 'Polideportivo' %}
+            {
+              title: '{{ i.tipoCancha }} - {{ i.nombre }} - {{ i.observaciones }}',
+              start: '{{ i.fechaInicio|date:"Y-m-d H:i" }}',
+              end: '{{ i.fechaFin|date:"Y-m-d H:i" }}',
+              color: 'green',
+          },
+            {% else %}         
             {
                 title: '{{ i.tipoCancha }} {{ i.nombre }}',
                 start: '{{ i.fechaInicio|date:"Y-m-d H:i" }}',
                 end: '{{ i.fechaFin|date:"Y-m-d H:i" }}'
             },
+            {% endif %} 
           {% endfor %}
       ]
     });
