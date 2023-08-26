@@ -38,7 +38,7 @@
             <li class="list-item"><a href="{% url 'index' %}" class="list-item-link">Inicio</a></li>
             <li class="list-item"><a href="{% url 'calendario' %}" class="list-item-link">Calendario</a></li>
             <li class="list-item"><a href="{% url 'contacto' %}" class="list-item-link">Contacto</a></li>
-            {% if user.username == 'admin' %}
+            {% if user.username == 'admin' or user.username == 'Lorenzo' %}
             <li class="list-item"><a href="" class="list-item-link"><label class="item-turno" for="submenu">Ganancias</label></a>  
                 <input type="checkbox" id="submenu">
                 <ul class="submenu-desplegable">

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load has_group %}
 {% block css %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 {% endblock  %}
@@ -15,14 +16,25 @@
                 <input id="nombre" type="text" class="form-control" name="nombre" autofocus required>
                 <label for="cancha" class="form-label">Cancha</label>
                 <select id="cancha" class="form-control" name="tipoCancha" autofocus required>
-                    <option value="Futbol">Futbol</option>
+                    {% if request.user|has_group:'Secretaria' %}
+                    <option value="Polideportivo">Polideportivo</option>
+                    {% elif request.user|has_group:'Canchero' %}
                     <option value="Padel">Padel</option>
+                    <option value="Futbol">Futbol</option>
+                    {% else %}
+                    <option value="Padel">Padel</option>
+                    <option value="Futbol">Futbol</option>
+                    <option value="Polideportivo">Polideportivo</option>
+                    {% endif %}
                 </select>
                 <label for="celular" class="form-label">Celular<small>(Opcional)</small></label>
                 <input id="celular" type="number" class="form-control" name="celular" autofocus>
-                <label for="fecha" class="form-label">Fecha</label>
+                <label for="fechaInicio" class="form-label">Fecha inicio</label>
                 {{ form.media }}
-                <input id="fecha" type="text" class="form-control flat" name="fecha" autofocus required>
+                <input id="fechaInicio" type="text" class="form-control flat" name="fechaInicio" autofocus required>
+                <label for="fechaFin" class="form-label">Fecha fin</label>
+                {{ form.media }}
+                <input id="fechaFin" type="text" class="form-control flat" name="fechaFin" autofocus required>
                 <label for="asistio" class="form-label">Asistio</label>
                 <select id="asistio" class="form-control" name="asistio" autofocus required>
                     <option value="Si">Si</option>
@@ -32,6 +44,10 @@
                 <input id="afiliado" type="number" class="form-control" name="afiliado" autofocus>
                 <label for="monto" class="form-label">Monto recaudado</label>
                 <input id="monto" type="number" class="form-control" name="montoRecaudado" autofocus>
+                {% if request.user|has_group:'Secretaria' %}
+                <label for="observaciones" class="form-label">Observaciones</label>
+                <textarea name="observaciones" placeholder="Colocar observaciones, por ejemplo: Si hay que ir a limpiar el salón" class="form-control" autofocus id="observaciones" cols="10" rows="5"></textarea>
+                {% endif %}
                 <label for="turnoDado" class="form-label">Turno dado por</label>
                 {{ form.turnoDadoPor }}
                 <input type="submit" value="Agendar turno" class="btn-inicio"/>  
