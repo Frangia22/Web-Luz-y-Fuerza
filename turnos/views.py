@@ -20,12 +20,12 @@ class detalleTurno(LoginRequiredMixin, ListView):
     template_name = "turnos/detalleTurno.html"
     context_object_name = 'turnos'
     paginate_by = 7
-    ordering = ['-fecha']
+    ordering = ['-fechaInicio']
 
     def get_context_data(self, **kwargs):
         contexto = super().get_context_data(**kwargs)
         mes = date.today()
-        contexto['montoTotal'] = Turno.objects.filter(fecha__month=mes.month).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
+        contexto['montoTotal'] = Turno.objects.filter(fechaInicio__month=mes.month).aggregate(Sum('montoRecaudado')).get('montoRecaudado__sum')
         return contexto
 
 class eliminarTurno(LoginRequiredMixin, DeleteView):
