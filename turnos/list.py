@@ -1,6 +1,7 @@
 cancha = (
     ('Padel', 'Padel'),
-    ('Futbol', 'Futbol')
+    ('Futbol', 'Futbol'),
+    ('Polideportivo', 'Polideportivo')
 )
 asistencia = (
     ('Si', 'Si'),
