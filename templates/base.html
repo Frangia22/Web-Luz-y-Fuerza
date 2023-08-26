@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 {% load static %}
+{% load has_group %}
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Sistema de gestión de turnos polideportivo Luz y Fuerza Laboulaye">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block css %}
     {% endblock  %}
     <title>Luz y Fuerza Laboulaye</title>
-    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" >
+    <link rel="shortcut icon" href="{% static 'img/logo.webp' %}" >
 </head>
 <body>
     {% block header %}
@@ -29,7 +31,7 @@
     </button> <!-- Cierra el btn -->
     <nav class="navbar" id="nav">
         <div class="logo">
-            <img class="img-logo" src="{% static 'img/logoNavWhite.png' %}" alt="Logo institucional">
+            <img class="img-logo" src="{% static 'img/logoNavWhite.webp' %}" alt="Logo institucional">
         </div>
         <ul class="list">
             {% if user.is_authenticated %}
@@ -38,7 +40,7 @@
             <li class="list-item"><a href="{% url 'index' %}" class="list-item-link">Inicio</a></li>
             <li class="list-item"><a href="{% url 'calendario' %}" class="list-item-link">Calendario</a></li>
             <li class="list-item"><a href="{% url 'contacto' %}" class="list-item-link">Contacto</a></li>
-            {% if user.username == 'admin' or user.username == 'Lorenzo' %}
+            {% if request.user|has_group:'Admin' %}
             <li class="list-item"><a href="" class="list-item-link"><label class="item-turno" for="submenu">Ganancias</label></a>  
                 <input type="checkbox" id="submenu">
                 <ul class="submenu-desplegable">
@@ -70,10 +72,10 @@
     <footer class="container" id="footer">
         <div class="footer">
             <div class="derechos">
-                <p class="text-footer">Derechos reservados 2021 &copy</p>
+                <p class="text-footer">Derechos reservados 2023 &copy</p>
             </div>
             <div class="dev">
-                <p class="text-footer">Diseñado por <a class="dev-link" href="https://fg-portfolio.netlify.app/">FG-FullStack</a></p>
+                <p class="text-footer">Desarrollado por <a class="dev-link" href="https://devfg.com.ar/">FG-FullStack</a></p>
             </div>
         </div>
     </footer>

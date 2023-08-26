@@ -195,16 +195,16 @@ body {
 }
 .portUno{
     align-items: flex-start;
-    background-image: url('/static/img/portadaUno.png');
+    background-image: url('/static/img/portadaUno.avif');
 }
 .portDos{
-    background-image: url('/static/img/portadaDos.png');
+    background-image: url('/static/img/portadaDos.avif');
 }
 .portTres{
-    background-image: url('/static/img/portadaTres.png');
+    background-image: url('/static/img/portadaTres.avif');
 }
 .portCuatro{
-    background-image: url('/static/img/portadaCuatro.png');
+    background-image: url('/static/img/portadaCuatro.avif');
 }
 /*---------------- Contacto ----------------------------------------------*/
 .contact{
@@ -320,17 +320,17 @@ body {
 .d-flex{
     display: flex;
     align-items: center;
-  }
-  .img-arrow {
+}
+.img-arrow {
     width: 1.4em;
     margin: auto 20px;
-  }
-  .balance {
+}
+.balance {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-  /*----------------------------------------------------------------- Table ----------------------------------------------*/
+/*----------------------------------------------------------------- Table ----------------------------------------------*/
 table{
     margin: 10px auto;
     text-align: center;
@@ -503,7 +503,7 @@ th, td{
         text-align: left;
     }
     .burger-menu{
-        background-image: url(../img/menu-black.png);
+        background-image: url(../img/hamburger.svg);
         display: inline-block;
         width: 2.5em;
         height: 2.5em;
